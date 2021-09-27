@@ -1,0 +1,20 @@
+plugins {
+    id 'java'
+    id 'application'
+    id 'com.github.johnrengelman.shadow' version '6.0.0'
+}
+
+mainClassName = 'com.yuhtin.clipdumper.ClipDumper'
+group 'com.yuhtin'
+version '1.0'
+
+shadowJar {
+    archiveName("${project.name}.jar")
+}
+
+compileJava {
+    options.encoding('UTF-8')
+
+    sourceCompatibility('1.8')
+    targetCompatibility('1.8')
+}
