@@ -4,6 +4,7 @@ import java.io.File;
 import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Scanner;
 import java.util.logging.Logger;
 
 /**
@@ -20,6 +21,12 @@ public class ClipDumper {
     }
 
     public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        LOGGER.info("You finished trim all clips?");
+        LOGGER.info("true - clear all not trim videos");
+        LOGGER.info("false - clear only trimmed videos");
+        boolean clearMode = scanner.nextBoolean();
+
         File folder = new File(Paths.get("").toAbsolutePath().toString());
         File[] files = folder.listFiles();
         if (files == null) {
@@ -51,7 +58,7 @@ public class ClipDumper {
             }
 
             String possibleFileName = file.getName().replace(".mp4", "") + "_Trim.mp4";
-            if (!clipsTrimmed.contains(possibleFileName)) {
+            if (!clearMode && !clipsTrimmed.contains(possibleFileName)) {
                 LOGGER.info("Jumping " + file.getName() + " because they not have a Trim.");
                 continue;
             }
