@@ -40,6 +40,11 @@ public class ClipDumper {
                 continue;
             }
 
+            if (!file.getName().endsWith(".mp4")) {
+                LOGGER.info("Jumping " + file.getName() + " because isn't a clip.");
+                continue;
+            }
+
             if (file.getName().contains("Trim")) {
                 LOGGER.info("Jumping " + file.getName() + " because is a Trim.");
                 continue;
